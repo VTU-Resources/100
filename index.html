@@ -3,8 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Davangere Benne Dose — Order</title>
-<link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+<title>Davangere Benne Dose — Pickup Order</title>
 <style>
   :root{
     --green:#0F5E3B;
@@ -22,74 +21,24 @@
     background:linear-gradient(180deg, #ffffff 0%, #fbfdfb 100%);
     color:#06221b;
     -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
   }
-
-  /* header */
-  header{
-    display:flex;
-    gap:12px;
-    align-items:center;
-    padding:14px;
-    border-bottom:1px solid rgba(15,94,59,0.06);
-    background: #fff;
-    position:sticky;
-    top:0;
-    z-index:40;
-  }
-  .logo{
-    display:flex;
-    align-items:center;
-    gap:12px;
-  }
-  .logo img{
-    width:62px;height:62px;border-radius:12px;object-fit:contain;background:var(--glass);padding:8px;border:3px solid rgba(15,94,59,0.06);
-  }
-  h1{margin:0;font-size:18px;color:var(--green);letter-spacing:0.2px}
+  header{display:flex;gap:12px;align-items:center;padding:14px;border-bottom:1px solid rgba(15,94,59,0.06);background:#fff;position:sticky;top:0;z-index:40}
+  .logo{display:flex;align-items:center;gap:12px}
+  .logo img{width:62px;height:62px;border-radius:12px;object-fit:contain;background:var(--glass);padding:8px;border:3px solid rgba(15,94,59,0.06)}
+  h1{margin:0;font-size:18px;color:var(--green)}
   p.subtitle{margin:0;font-size:12px;color:var(--muted)}
-
-  .controls{
-    margin-left:auto;
-    display:flex;gap:8px;align-items:center;
-  }
-  .search{
-    display:flex;align-items:center;background:var(--card);padding:8px;border-radius:12px;box-shadow:var(--shadow);
-    gap:8px;border:1px solid rgba(15,94,59,0.04);
-  }
+  .controls{margin-left:auto;display:flex;gap:8px;align-items:center}
+  .search{display:flex;align-items:center;background:var(--card);padding:8px;border-radius:12px;box-shadow:var(--shadow);gap:8px;border:1px solid rgba(15,94,59,0.04);}
   .search input{border:0;outline:none;background:transparent;width:180px;font-size:14px}
   .chip-row{padding:12px;display:flex;gap:8px;overflow:auto}
   .chip{padding:8px 12px;border-radius:20px;background:var(--glass);border:1px solid rgba(15,94,59,0.06);font-size:13px;cursor:pointer;white-space:nowrap}
   .chip.active{background:var(--green);color:#fff;border-color:var(--green);box-shadow:0 6px 18px rgba(15,94,59,0.12)}
-
   main{padding:12px;padding-bottom:120px;max-width:1100px;margin:0 auto;}
-
-  /* flash banner */
-  .flash{
-    display:flex;align-items:center;justify-content:space-between;padding:12px;border-radius:14px;background:linear-gradient(90deg,#ecfff4,#f8fffb);
-    box-shadow:var(--shadow);border:1px solid rgba(11,122,74,0.06);margin-bottom:12px;gap:12px;
-  }
-  .flash .left{display:flex;gap:12px;align-items:center}
+  .flash{display:flex;align-items:center;justify-content:space-between;padding:12px;border-radius:14px;background:linear-gradient(90deg,#ecfff4,#f8fffb);box-shadow:var(--shadow);border:1px solid rgba(11,122,74,0.06);margin-bottom:12px;gap:12px;}
   .badge{background:var(--green);color:#fff;padding:6px 10px;border-radius:10px;font-weight:600;font-size:13px}
   .countdown{font-weight:700;color:var(--accent);font-size:16px}
-  .flash small{color:var(--muted)}
-
-  /* grid */
-  .grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-    gap:14px;
-  }
-  .card{
-    background:var(--card);
-    border-radius:14px;
-    padding:12px;
-    box-shadow:var(--shadow);
-    display:flex;flex-direction:column;
-    gap:8px;
-    border:1px solid rgba(15,94,59,0.03);
-    position:relative;
-    overflow:hidden;
-  }
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+  .card{background:var(--card);border-radius:14px;padding:12px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px;border:1px solid rgba(15,94,59,0.03);position:relative;overflow:hidden;}
   .item-top{display:flex;gap:10px;align-items:center}
   .thumb{width:86px;height:86px;border-radius:12px;flex-shrink:0;object-fit:cover;border:1px solid rgba(0,0,0,0.04)}
   .title{font-weight:700;font-size:16px;color:var(--green);margin-bottom:4px}
@@ -99,47 +48,45 @@
   .add-btn{background:var(--green);color:#fff;padding:8px 10px;border-radius:10px;border:0;cursor:pointer;font-weight:700}
   .qty-controls{display:flex;gap:8px;align-items:center}
   .qty-controls button{padding:6px 10px;border-radius:8px;border:1px solid rgba(15,94,59,0.12);background:transparent;cursor:pointer}
-
-  /* small badges */
-  .tag{
-    position:absolute;left:12px;top:12px;background:rgba(255,255,255,0.92);padding:6px 8px;border-radius:10px;font-size:12px;color:var(--green);border:1px solid rgba(15,94,59,0.06)
-  }
+  .tag{position:absolute;left:12px;top:12px;background:rgba(255,255,255,0.92);padding:6px 8px;border-radius:10px;font-size:12px;color:var(--green);border:1px solid rgba(15,94,59,0.06)}
   .hot{right:12px;top:12px;position:absolute;background:linear-gradient(90deg,#fff6ee,#fff);padding:6px 8px;border-radius:10px;font-size:12px;color:#b85a00;border:1px solid rgba(184,90,0,0.06)}
-
-  /* bottom cart */
-  .cart-bar{
-    position:fixed;left:50%;transform:translateX(-50%);bottom:18px;width:min(980px,96%);background:#fff;padding:12px 16px;border-radius:14px;box-shadow:0 18px 40px rgba(10,10,10,0.12);display:flex;align-items:center;gap:12px;z-index:60;border:1px solid rgba(15,94,59,0.06)
-  }
+  .cart-bar{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;width:min(980px,96%);background:#fff;padding:12px 16px;border-radius:14px;box-shadow:0 18px 40px rgba(10,10,10,0.12);display:flex;align-items:center;gap:12px;z-index:60;border:1px solid rgba(15,94,59,0.06)}
   .cart-info{display:flex;gap:8px;align-items:center}
   .cart-total{font-weight:800;font-size:18px;color:var(--green)}
   .cart-meta{font-size:13px;color:var(--muted)}
   .order-btn{margin-left:auto;background:var(--accent);color:#fff;padding:10px 14px;border-radius:12px;border:0;font-weight:800;cursor:pointer;display:flex;gap:10px;align-items:center}
   .order-btn.secondary{background:#fff;color:var(--accent);border:2px solid rgba(11,122,74,0.12)}
-
-  /* toast */
-  .toast{
-    position:fixed;right:18px;bottom:110px;background:var(--green);color:#fff;padding:10px 12px;border-radius:10px;box-shadow:var(--shadow);z-index:80;opacity:0;transform:translateY(10px);transition:all .28s;pointer-events:none;
-  }
+  .toast{position:fixed;right:18px;bottom:110px;background:var(--green);color:#fff;padding:10px 12px;border-radius:10px;box-shadow:var(--shadow);z-index:80;opacity:0;transform:translateY(10px);transition:all .28s;pointer-events:none;}
   .toast.show{opacity:1;transform:translateY(0);pointer-events:auto}
-
-  /* responsive tweaks */
-  @media (max-width:520px){
-    .search input{width:110px}
-    .logo img{width:52px;height:52px}
-    .thumb{width:74px;height:74px}
-    header{padding:10px}
-  }
+  /* modal */
+  .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.3);display:none;align-items:center;justify-content:center;z-index:200;padding:20px}
+  .modal{background:#fff;border-radius:14px;padding:16px;max-width:560px;width:100%;box-shadow:0 20px 50px rgba(0,0,0,0.3);border:1px solid rgba(0,0,0,0.04)}
+  .modal h2{margin:0 0 8px 0;color:var(--green)}
+  .modal .summary{max-height:320px;overflow:auto;margin-bottom:8px;border-radius:10px;padding:8px;background:var(--glass)}
+  .modal .row{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px dashed rgba(15,94,59,0.04)}
+  .modal .row:last-child{border-bottom:none}
+  .modal .actions{display:flex;gap:8px;justify-content:flex-end;margin-top:8px}
+  .btn{padding:8px 10px;border-radius:10px;border:0;cursor:pointer}
+  .btn.ghost{background:transparent;border:1px solid rgba(15,94,59,0.08)}
+  .btn.primary{background:var(--accent);color:#fff}
+  .small{font-size:13px;color:var(--muted)}
+  .pickup-time{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  input[type="time"], input[type="text"], input[type="tel"], select{padding:8px;border-radius:8px;border:1px solid rgba(15,94,59,0.08);font-size:14px}
+  label{font-size:13px;color:var(--muted);display:block;margin-bottom:6px}
+  .form-row{display:flex;gap:8px;align-items:center}
+  .form-col{flex:1}
+  .error{color:#b00020;font-size:13px;margin-top:6px}
+  @media (max-width:520px){.search input{width:110px}.logo img{width:52px;height:52px}.thumb{width:74px;height:74px}header{padding:10px}}
 </style>
 </head>
 <body>
 
 <header>
   <div class="logo">
-    <!-- Put your logo file here as logo.png or update src -->
     <img src="3d1c01ff-3a21-44a7-9248-6d00921180eb.png" alt="logo" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=256&auto=format&fit=crop&ixlib=rb-4.0.3&s=1'">
     <div>
       <h1>Davangere <span style="font-weight:900">Benne Dose</span></h1>
-      <p class="subtitle">Authentic, buttery & made-to-order</p>
+      <p class="subtitle">Order online — Pickup at our hotel</p>
     </div>
   </div>
 
@@ -161,7 +108,7 @@
 
 <main>
   <div class="flash">
-    <div class="left">
+    <div style="display:flex;gap:12px;align-items:center">
       <div class="badge">FLASH DEAL</div>
       <div>
         <div style="font-weight:800">Benne Dose Bonanza — 20% OFF on selected items</div>
@@ -169,15 +116,13 @@
       </div>
     </div>
     <div style="display:flex;gap:12px;align-items:center">
-      <small class="cart-meta">Free chutney on orders above ₹250</small>
+      <small class="cart-meta">Pickup only — collect from the hotel</small>
       <div style="width:1px;height:36px;background:rgba(15,94,59,0.06)"></div>
       <div style="font-weight:700;color:var(--muted)">Est. prep <span id="avg-time">12-18</span> mins</div>
     </div>
   </div>
 
-  <section class="grid" id="menuGrid">
-    <!-- Cards injected by JS -->
-  </section>
+  <section class="grid" id="menuGrid"></section>
 </main>
 
 <!-- bottom cart -->
@@ -192,18 +137,60 @@
     </div>
   </div>
 
-  <button class="order-btn" id="whatsappOrder">
+  <button class="order-btn" id="openConfirm">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="filter:brightness(1.2)"><path d="M21.7 19.2a10.1 10.1 0 10-2.5 2.5L22 22l-0.3-2.8z" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path><path d="M20 14.5c-.3-.2-1.6-.8-1.8-.9-.4-.2-.7-.2-1.1.3-.4.6-1.1.9-1.7 1.1-.4.1-.8.1-1.2-.1-1-.4-2-1.3-2.6-2.2-.6-.9-.5-1.4-.1-1.7.4-.4.8-.9 1.2-1.3.3-.3.4-.7.3-1-.1-.3-.9-2-1.2-2.7-.3-.7-.6-.6-.9-.6-.2 0-.5 0-.8 0-.3 0-.8.1-1.3.6-0.5.4-1.4 1.4-1.4 3.3s1.4 3.8 1.6 4 .1.7-.1 1.1c-.2.4-0.9 1.8-1.2 2.4-.3.6-.5.6-1 .5-.5-.1-3.9-1.5-5.5-2.6-.6-.5-1-.9-1.1-1.5-.1-.6 0-1.1.3-1.6.2-.4.9-1 1.2-1.2.3-.2.6-.5.9-.3.2.1 1 .7 1 .7s1.2.7 1.9 1c.7.3 1.1.2 1.6-.2.5-.4 1.6-1.4 2.4-2.1.8-.7 1.1-1 1.6-1.1s.9.1 1.3.4c.4.3 1.1.9 1.4 1.4.3.5.3 1 .1 1.4-.2.4-.8 1.1-1 1.3z" fill="#fff"></path></svg>
-    Order via WhatsApp
+    Confirm & Send (WhatsApp)
   </button>
 </div>
 
 <!-- toast -->
 <div class="toast" id="toast">Added to cart</div>
 
+<!-- confirmation modal -->
+<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-hidden="true">
+  <div class="modal" role="document" aria-labelledby="confirmTitle">
+    <h2 id="confirmTitle">Confirm your order</h2>
+    <div class="small">Pickup-only. We will receive your order on WhatsApp.</div>
+    <div class="summary" id="orderSummary"></div>
+
+    <div style="margin-top:8px">
+      <label class="small" for="pickupSelect">When can we collect?</label>
+      <div class="pickup-time" style="margin-top:6px">
+        <select id="pickupSelect" aria-label="Quick pickup options">
+          <option value="ASAP">ASAP (as soon as possible)</option>
+          <option value="In 15 minutes">In 15 minutes</option>
+          <option value="In 30 minutes">In 30 minutes</option>
+          <option value="Custom">Pick a time…</option>
+        </select>
+        <input type="time" id="pickupTime" style="display:none" />
+      </div>
+    </div>
+
+    <div style="margin-top:10px">
+      <label class="small" for="contactName">Contact name</label>
+      <input type="text" id="contactName" placeholder="Your name (required)" />
+    </div>
+
+    <div style="margin-top:10px">
+      <label class="small" for="contactPhone">Contact phone</label>
+      <input type="tel" id="contactPhone" placeholder="e.g., 9876543210 (required)" />
+      <div class="error" id="contactError" style="display:none"></div>
+    </div>
+
+    <div style="margin-top:8px">
+      <div class="small" id="orderIdHint">Order ID will be generated when you press "Send order".</div>
+    </div>
+
+    <div class="actions">
+      <button class="btn ghost" id="cancelConfirm">Cancel</button>
+      <button class="btn primary" id="sendWhats">Send order to WhatsApp</button>
+    </div>
+  </div>
+</div>
+
 <script>
-/* ----- Configuration ----- */
-const PHONE_NUMBER = "919113039893"; // +91 9113039893 (use full international format, no plus)
+/* ------------------- CONFIG ------------------- */
+const PHONE_NUMBER = "919113039893"; // target WhatsApp number (no +)
 const ITEMS = [
   { id: 'dose1', name:'Classic Benne Dose', price: 85, cat:'classic', desc:'Buttery, served with chutney & sambar', img:'https://images.unsplash.com/photo-1604908177607-5a3e4d3b9f68?q=80&w=800&auto=format&fit=crop'},
   { id: 'dose2', name:'Masala Benne Dose', price: 110, cat:'classic', desc:'Potato masala, lots of butter', img:'https://images.unsplash.com/photo-1604908563791-4b5bfa3d6b2d?q=80&w=800&auto=format&fit=crop'},
@@ -215,19 +202,18 @@ const ITEMS = [
   { id: 'dose8', name:'Garlic Benne Dose', price: 115, cat:'special', desc:'A garlic punch with benne glaze', img:'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=800&auto=format&fit=crop'},
   { id: 'dose9', name:'Mushroom Benne Dose', price: 160, cat:'special', desc:'Sautéed mushrooms, herby butter', img:'https://images.unsplash.com/photo-1523986371872-9d3ba2e2f642?q=80&w=800&auto=format&fit=crop'},
 ];
-
-/* ----- state ----- */
-let CART = {}; // id -> {item, qty}
+/* ------------------- STATE ------------------- */
+let CART = {}; // id -> { item, qty }
 let activeCat = 'all';
-let flashEndsAt = Date.now() + (15 * 60 * 1000); // 15 minutes from load
+let flashEndsAt = Date.now() + (15 * 60 * 1000);
 
-/* ----- helpers ----- */
+/* ------------------- HELPERS ------------------- */
 const currency = n => `₹${n.toFixed(0)}`;
 const el = s => document.querySelector(s);
 const elAll = s => Array.from(document.querySelectorAll(s));
 
-/* ----- render menu ----- */
-function renderMenu(filterText='') {
+/* ------------------- RENDER ------------------- */
+function renderMenu(filterText=''){
   const grid = el('#menuGrid');
   grid.innerHTML = '';
   const q = filterText.trim().toLowerCase();
@@ -236,7 +222,6 @@ function renderMenu(filterText='') {
     const textMatch = !q || it.name.toLowerCase().includes(q) || it.desc.toLowerCase().includes(q);
     return catMatch && textMatch;
   });
-
   arr.forEach(it=>{
     const inCart = CART[it.id] ? CART[it.id].qty : 0;
     const hotMin = Math.max(3, 10 - Math.floor(Math.random()*7));
@@ -260,7 +245,7 @@ function renderMenu(filterText='') {
           <small class="cart-meta">incl. standard chutney</small>
         </div>
         <div>
-          <div class="${inCart? 'qty-controls' : ''}" style="display:flex;align-items:center">
+          <div style="display:flex;align-items:center">
             ${inCart ? `
               <div class="qty-controls">
                 <button class="btn-decrease" data-id="${it.id}">-</button>
@@ -275,13 +260,13 @@ function renderMenu(filterText='') {
     grid.appendChild(node);
   });
 
-  // attach event listeners
+  // attach events
   elAll('.add-btn').forEach(b=>b.addEventListener('click', onAdd));
   elAll('.btn-increase').forEach(b=>b.addEventListener('click', onIncrease));
   elAll('.btn-decrease').forEach(b=>b.addEventListener('click', onDecrease));
 }
 
-/* ----- cart ops ----- */
+/* ------------------- CART OPS ------------------- */
 function onAdd(e){
   const id = e.currentTarget.dataset.id;
   CART[id] = { item: ITEMS.find(x=>x.id===id), qty:1 };
@@ -304,25 +289,23 @@ function onDecrease(e){
   renderMenu(el('#search').value);
   updateCartBar();
 }
-
 function updateCartBar(){
   const items = Object.values(CART);
   const count = items.reduce((s,o)=>s+o.qty,0);
   const subtotal = items.reduce((s,o)=>s + o.qty * o.item.price, 0);
-  const shipping = subtotal>250 ? 0 : (subtotal>0 ? 20 : 0);
-  const total = Math.round(subtotal * 1) + shipping; // you could add taxes
+  const total = Math.round(subtotal);
   if(count===0){
     el('#cartBar').style.display='none';
     el('#cartBar').setAttribute('aria-hidden','true');
-  }else{
+  } else {
     el('#cartBar').style.display='flex';
     el('#cartBar').setAttribute('aria-hidden','false');
   }
   el('#cartTotal').textContent = currency(total);
-  el('#cartItemsCount').textContent = `${count} item${count>1?'s':''} · ${shipping? 'Delivery ₹'+shipping : 'Free delivery'}`;
+  el('#cartItemsCount').textContent = `${count} item${count>1?'s':''}`;
 }
 
-/* ----- toast ----- */
+/* ------------------- TOAST ------------------- */
 let toastTimer=null;
 function showToast(txt){
   const t = el('#toast');
@@ -332,7 +315,7 @@ function showToast(txt){
   toastTimer = setTimeout(()=> t.classList.remove('show'),1800);
 }
 
-/* ----- categories & search ----- */
+/* ------------------- CATEGORIES & SEARCH ------------------- */
 elAll('.chip').forEach(c=>{
   c.addEventListener('click',()=>{
     elAll('.chip').forEach(x=>x.classList.remove('active'));
@@ -341,71 +324,198 @@ elAll('.chip').forEach(c=>{
     renderMenu(el('#search').value);
   });
 });
+el('#search').addEventListener('input', (ev)=> renderMenu(ev.target.value));
 
-el('#search').addEventListener('input', (ev)=>{
-  renderMenu(ev.target.value);
+/* ------------------- ORDER ID GENERATION ------------------- */
+function generateRandomLetters(n=4){
+  const alphabet = 'ABCDEFGHJKMNPQRSTUVWXYZ';
+  let out = '';
+  for(let i=0;i<n;i++) out += alphabet[Math.floor(Math.random()*alphabet.length)];
+  return out;
+}
+function nowTimestamp(){
+  const d = new Date();
+  const pad = (v,len=2)=>String(v).padStart(len,'0');
+  return `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}${pad(d.getMilliseconds(),3)}`;
+}
+function loadUsedIds(){
+  try{
+    const raw = localStorage.getItem('benne_order_ids');
+    return raw ? JSON.parse(raw) : [];
+  }catch(e){ return []; }
+}
+function saveUsedId(id){
+  const list = loadUsedIds();
+  list.push(id);
+  try{ localStorage.setItem('benne_order_ids', JSON.stringify(list)); }catch(e){}
+}
+function generateOrderId(){
+  const used = loadUsedIds();
+  let attempt=0;
+  while(true){
+    attempt++;
+    const id = `BD-${nowTimestamp()}-${generateRandomLetters(4)}`;
+    if(!used.includes(id)){
+      saveUsedId(id);
+      return id;
+    }
+    if(attempt>8){
+      const stop = Date.now()+3;
+      while(Date.now()<stop){}
+    }
+  }
+}
+
+/* ------------------- CONFIRMATION MODAL & WHATSAPP FLOW ------------------- */
+const modal = el('#modalBackdrop');
+const orderSummary = el('#orderSummary');
+const pickupSelect = el('#pickupSelect');
+const pickupTimeInput = el('#pickupTime');
+const orderIdHint = el('#orderIdHint');
+const contactNameInput = el('#contactName');
+const contactPhoneInput = el('#contactPhone');
+const contactError = el('#contactError');
+
+el('#openConfirm').addEventListener('click', openConfirm);
+el('#cancelConfirm').addEventListener('click', closeConfirm);
+pickupSelect.addEventListener('change', (e)=>{
+  if(e.target.value === 'Custom') pickupTimeInput.style.display = 'inline-block';
+  else pickupTimeInput.style.display = 'none';
 });
 
-/* ----- WhatsApp order flow ----- */
-el('#whatsappOrder').addEventListener('click', ()=>{
+function openConfirm(){
   const items = Object.values(CART);
   if(items.length===0){
     showToast('Cart is empty');
     return;
   }
-  // Build message
+  // render summary
+  orderSummary.innerHTML = '';
+  let subtotal = 0;
+  items.forEach(it=>{
+    const row = document.createElement('div');
+    row.className = 'row';
+    row.innerHTML = `<div style="font-weight:700">${it.qty} × ${it.item.name}</div><div style="font-weight:800">${currency(it.item.price*it.qty)}</div>`;
+    orderSummary.appendChild(row);
+    subtotal += it.qty * it.item.price;
+  });
+  const totalRow = document.createElement('div');
+  totalRow.className = 'row';
+  totalRow.innerHTML = `<div style="font-weight:800">Total</div><div style="font-weight:900">${currency(subtotal)}</div>`;
+  orderSummary.appendChild(totalRow);
+
+  // clear previous errors
+  contactError.style.display = 'none';
+  contactError.textContent = '';
+
+  modal.style.display = 'flex';
+  modal.setAttribute('aria-hidden','false');
+
+  // try to prefill name/phone from localStorage (convenience)
+  const savedName = localStorage.getItem('benne_contact_name');
+  const savedPhone = localStorage.getItem('benne_contact_phone');
+  if(savedName) contactNameInput.value = savedName;
+  if(savedPhone) contactPhoneInput.value = savedPhone;
+}
+
+function closeConfirm(){
+  modal.style.display = 'none';
+  modal.setAttribute('aria-hidden','true');
+}
+
+/* validate phone: simple digits, length 6..15 */
+function validatePhone(raw){
+  if(!raw) return false;
+  const digits = raw.replace(/\D/g,'');
+  return digits.length >= 6 && digits.length <= 15;
+}
+
+/* build whatsapp message and open chat */
+el('#sendWhats').addEventListener('click', ()=>{
+  const items = Object.values(CART);
+  if(items.length===0){ showToast('Cart empty'); closeConfirm(); return; }
+
+  // validate contact info
+  const name = (contactNameInput.value || '').trim();
+  const phoneRaw = (contactPhoneInput.value || '').trim();
+  if(name.length < 2){
+    contactError.style.display = 'block';
+    contactError.textContent = 'Please enter your name (required)';
+    return;
+  }
+  if(!validatePhone(phoneRaw)){
+    contactError.style.display = 'block';
+    contactError.textContent = 'Please enter a valid phone number (digits only, 6–15 chars)';
+    return;
+  }
+  contactError.style.display = 'none';
+
+  // normalize phone for message (keep user-supplied; we don't change)
+  const phoneDigits = phoneRaw.replace(/\s+/g, '');
+
+  // Pickup time
+  let pickupText = pickupSelect.value;
+  if(pickupText === 'Custom'){
+    const t = pickupTimeInput.value;
+    pickupText = t ? `At ${t}` : 'ASAP';
+  }
+
+  // Generate order ID and store it
+  const orderId = generateOrderId();
+
+  // Save contact for convenience next time
+  try{ localStorage.setItem('benne_contact_name', name); localStorage.setItem('benne_contact_phone', phoneDigits); }catch(e){}
+
+  // Build WhatsApp message lines (no address, no notes; include contact fields)
   let lines = [];
-  lines.push('Hello! I want to place an order from Davangere Benne Dose 🧈');
+  lines.push(`Hello! I want to place order — Davangere Benne Dose 🧈`);
+  lines.push(`Order ID: ${orderId}`);
   lines.push('');
   let subtotal = 0;
   items.forEach(it=>{
-    const name = it.item.name;
+    const nameItem = it.item.name;
     const qty = it.qty;
     const price = it.item.price;
     subtotal += price * qty;
-    lines.push(`${qty} x ${name} — ₹${price} each · ₹${price*qty}`);
+    lines.push(`${qty} x ${nameItem} — ₹${price} each · ₹${price*qty}`);
   });
-  const shipping = subtotal>250 ? 0 : 20;
   lines.push('');
-  lines.push(`Subtotal: ₹${subtotal}`);
-  lines.push(`Delivery: ₹${shipping}`);
-  lines.push(`Total: ₹${subtotal + shipping}`);
+  lines.push(`Total: ₹${subtotal}`); // pickup, no delivery
   lines.push('');
-  lines.push('Delivery Address:'); // user can fill in WhatsApp
-  lines.push('Contact name:'); // placeholder
-  lines.push('Contact phone:');
+  lines.push(`When can we collect: ${pickupText}`);
   lines.push('');
-  lines.push('Preferred time: As soon as possible');
+  lines.push(`Contact name: ${name}`);
+  lines.push(`Contact phone: ${phoneDigits}`);
   lines.push('');
-  lines.push('--- Generated by Davangere Benne Dose App');
+  lines.push('— This order was placed via Davangere Benne Dose App🧈');
 
   const message = encodeURIComponent(lines.join('\n'));
-  const url = `https://wa.me/${PHONE_NUMBER}?text=${message}`;
-  window.open(url,'_blank');
+  const waUrl = `https://wa.me/${PHONE_NUMBER}?text=${message}`;
+  window.open(waUrl, '_blank');
+
+  // Clear cart and update UI
+  CART = {};
+  updateCartBar();
+  renderMenu(el('#search').value);
+  closeConfirm();
+  showToast('Order sent — check WhatsApp');
 });
 
-/* ----- flash timer ----- */
+/* ------------------- FLASH TIMER ------------------- */
 function updateFlashTimer(){
   const now = Date.now();
   const diff = Math.max(0, flashEndsAt - now);
   const m = Math.floor(diff / 60000);
   const s = Math.floor((diff % 60000)/1000);
   el('#flash-timer').textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
-  if(diff<=0){
-    // extend or switch offer
-    flashEndsAt = Date.now() + (10 * 60 * 1000); // add 10 mins sliding
-  }
-  // update average prep estimate with slight randomization to feel live
+  if(diff<=0) flashEndsAt = Date.now() + (10 * 60 * 1000);
   const avg = 12 + Math.floor(Math.random()*8);
   el('#avg-time').textContent = `${avg}-${avg+6}`;
 }
 setInterval(updateFlashTimer,1000);
 updateFlashTimer();
 
-/* ----- initial render ----- */
-renderMenu();
-
-/* ----- extras: keyboard shortcuts & persistent small cart in localStorage ----- */
+/* ------------------- PERSIST CART (optional) ------------------- */
 window.addEventListener('beforeunload', ()=> localStorage.setItem('benne_cart', JSON.stringify(CART)));
 const saved = localStorage.getItem('benne_cart');
 if(saved){
@@ -414,7 +524,7 @@ if(saved){
 updateCartBar();
 renderMenu();
 
-/* Optional: quick-add numbers for demo (press 1..9 to add item) */
+/* ------------------- convenience: keyboard quick-add 1..9 ------------------- */
 window.addEventListener('keydown', (e)=>{
   const n = Number(e.key);
   if(n >= 1 && n <= ITEMS.length){
