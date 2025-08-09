@@ -15,7 +15,11 @@
     --shadow: 0 6px 18px rgba(10,10,10,0.08);
     font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   }
-  *{box-sizing:border-box}
+  *{
+    box-sizing:border-box;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+  }
   body{
     margin:0;
     background:linear-gradient(180deg, #ffffff 0%, #fbfdfb 100%);
@@ -66,7 +70,14 @@
   .modal .row{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px dashed rgba(15,94,59,0.04)}
   .modal .row:last-child{border-bottom:none}
   .modal .actions{display:flex;gap:8px;justify-content:flex-end;margin-top:8px}
-  .btn{padding:8px 10px;border-radius:10px;border:0;cursor:pointer}
+  .btn{
+    padding:8px 10px;
+    border-radius:10px;
+    border:0;
+    cursor:pointer;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+  }
   .btn.ghost{background:transparent;border:1px solid rgba(15,94,59,0.08)}
   .btn.primary{background:var(--accent);color:#fff}
   .small{font-size:13px;color:var(--muted)}
@@ -538,3 +549,4 @@ window.addEventListener('keydown', (e)=>{
 </script>
 </body>
 </html>
+
