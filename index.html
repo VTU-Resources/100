@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Davangere Benne Dose — Pickup Order</title>
+<title>Davangere Benne Dose — Pickup Order (Fixed)</title>
 <style>
   :root{
     --green:#0F5E3B;
@@ -15,34 +15,25 @@
     --shadow: 0 6px 18px rgba(10,10,10,0.08);
     font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   }
-  *{
-    box-sizing:border-box;
-    -webkit-tap-highlight-color: transparent;
-    outline: none;
-  }
-  body{
-    margin:0;
-    background:linear-gradient(180deg, #ffffff 0%, #fbfdfb 100%);
-    color:#06221b;
-    -webkit-font-smoothing:antialiased;
-  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color: transparent;outline: none}
+  body{margin:0;background:linear-gradient(180deg, #ffffff 0%, #fbfdfb 100%);color:#06221b;-webkit-font-smoothing:antialiased}
   header{display:flex;gap:12px;align-items:center;padding:14px;border-bottom:1px solid rgba(15,94,59,0.06);background:#fff;position:sticky;top:0;z-index:40}
   .logo{display:flex;align-items:center;gap:12px}
   .logo img{width:62px;height:62px;border-radius:12px;object-fit:contain;background:var(--glass);padding:8px;border:3px solid rgba(15,94,59,0.06)}
   h1{margin:0;font-size:18px;color:var(--green)}
   p.subtitle{margin:0;font-size:12px;color:var(--muted)}
   .controls{margin-left:auto;display:flex;gap:8px;align-items:center}
-  .search{display:flex;align-items:center;background:var(--card);padding:8px;border-radius:12px;box-shadow:var(--shadow);gap:8px;border:1px solid rgba(15,94,59,0.04);}
+  .search{display:flex;align-items:center;background:var(--card);padding:8px;border-radius:12px;box-shadow:var(--shadow);gap:8px;border:1px solid rgba(15,94,59,0.04)}
   .search input{border:0;outline:none;background:transparent;width:180px;font-size:14px}
   .chip-row{padding:12px;display:flex;gap:8px;overflow:auto}
   .chip{padding:8px 12px;border-radius:20px;background:var(--glass);border:1px solid rgba(15,94,59,0.06);font-size:13px;cursor:pointer;white-space:nowrap}
   .chip.active{background:var(--green);color:#fff;border-color:var(--green);box-shadow:0 6px 18px rgba(15,94,59,0.12)}
   main{padding:12px;padding-bottom:120px;max-width:1100px;margin:0 auto;}
-  .flash{display:flex;align-items:center;justify-content:space-between;padding:12px;border-radius:14px;background:linear-gradient(90deg,#ecfff4,#f8fffb);box-shadow:var(--shadow);border:1px solid rgba(11,122,74,0.06);margin-bottom:12px;gap:12px;}
+  .flash{display:flex;align-items:center;justify-content:space-between;padding:12px;border-radius:14px;background:linear-gradient(90deg,#ecfff4,#f8fffb);box-shadow:var(--shadow);border:1px solid rgba(11,122,74,0.06);margin-bottom:12px;gap:12px}
   .badge{background:var(--green);color:#fff;padding:6px 10px;border-radius:10px;font-weight:600;font-size:13px}
   .countdown{font-weight:700;color:var(--accent);font-size:16px}
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
-  .card{background:var(--card);border-radius:14px;padding:12px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px;border:1px solid rgba(15,94,59,0.03);position:relative;overflow:hidden;}
+  .card{background:var(--card);border-radius:14px;padding:12px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px;border:1px solid rgba(15,94,59,0.03);position:relative;overflow:hidden}
   .item-top{display:flex;gap:10px;align-items:center}
   .thumb{width:86px;height:86px;border-radius:12px;flex-shrink:0;object-fit:cover;border:1px solid rgba(0,0,0,0.04)}
   .title{font-weight:700;font-size:16px;color:var(--green);margin-bottom:4px}
@@ -60,24 +51,17 @@
   .cart-meta{font-size:13px;color:var(--muted)}
   .order-btn{margin-left:auto;background:var(--accent);color:#fff;padding:10px 14px;border-radius:12px;border:0;font-weight:800;cursor:pointer;display:flex;gap:10px;align-items:center}
   .order-btn.secondary{background:#fff;color:var(--accent);border:2px solid rgba(11,122,74,0.12)}
-  .toast{position:fixed;right:18px;bottom:110px;background:var(--green);color:#fff;padding:10px 12px;border-radius:10px;box-shadow:var(--shadow);z-index:80;opacity:0;transform:translateY(10px);transition:all .28s;pointer-events:none;}
+  .toast{position:fixed;right:18px;bottom:110px;background:var(--green);color:#fff;padding:10px 12px;border-radius:10px;box-shadow:var(--shadow);z-index:80;opacity:0;transform:translateY(10px);transition:all .28s;pointer-events:none}
   .toast.show{opacity:1;transform:translateY(0);pointer-events:auto}
   /* modal */
-  .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.3);display:none;align-items:center;justify-content:center;z-index:200;padding:20px}
+  .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.32);display:none;align-items:center;justify-content:center;z-index:200;padding:20px}
   .modal{background:#fff;border-radius:14px;padding:16px;max-width:560px;width:100%;box-shadow:0 20px 50px rgba(0,0,0,0.3);border:1px solid rgba(0,0,0,0.04)}
   .modal h2{margin:0 0 8px 0;color:var(--green)}
   .modal .summary{max-height:320px;overflow:auto;margin-bottom:8px;border-radius:10px;padding:8px;background:var(--glass)}
   .modal .row{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px dashed rgba(15,94,59,0.04)}
   .modal .row:last-child{border-bottom:none}
   .modal .actions{display:flex;gap:8px;justify-content:flex-end;margin-top:8px}
-  .btn{
-    padding:8px 10px;
-    border-radius:10px;
-    border:0;
-    cursor:pointer;
-    -webkit-tap-highlight-color: transparent;
-    outline: none;
-  }
+  .btn{padding:8px 10px;border-radius:10px;border:0;cursor:pointer;-webkit-tap-highlight-color: transparent;outline: none}
   .btn.ghost{background:transparent;border:1px solid rgba(15,94,59,0.08)}
   .btn.primary{background:var(--accent);color:#fff}
   .small{font-size:13px;color:var(--muted)}
@@ -87,6 +71,8 @@
   .form-row{display:flex;gap:8px;align-items:center}
   .form-col{flex:1}
   .error{color:#b00020;font-size:13px;margin-top:6px}
+  /* when modal open, prevent interactions on background */
+  .bg-inert{pointer-events:none;user-select:none;filter:opacity(0.9) blur(0.2px)}
   @media (max-width:520px){.search input{width:110px}.logo img{width:52px;height:52px}.thumb{width:74px;height:74px}header{padding:10px}}
 </style>
 </head>
@@ -104,7 +90,7 @@
   <div class="controls">
     <div class="search" title="Search">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="opacity:.8"><path d="M21 21l-4.35-4.35" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="11" cy="11" r="6" stroke="var(--green)" stroke-width="2"></circle></svg>
-      <input id="search" placeholder="Search benne dose..." />
+      <input id="search" placeholder="Search benne dose..." autocomplete="off" />
     </div>
   </div>
 </header>
@@ -117,7 +103,7 @@
   <div class="chip" data-cat="special">Special</div>
 </div>
 
-<main>
+<main id="mainContent">
   <div class="flash">
     <div style="display:flex;gap:12px;align-items:center">
       <div class="badge">FLASH DEAL</div>
@@ -179,12 +165,12 @@
 
     <div style="margin-top:10px">
       <label class="small" for="contactName">Contact name</label>
-      <input type="text" id="contactName" placeholder="Your name (required)" />
+      <input type="text" id="contactName" placeholder="Your name (required)" autocomplete="name" />
     </div>
 
     <div style="margin-top:10px">
       <label class="small" for="contactPhone">Contact phone</label>
-      <input type="tel" id="contactPhone" placeholder="e.g., 9876543210 (required)" />
+      <input type="tel" id="contactPhone" placeholder="e.g., 9876543210 (required)" autocomplete="tel" inputmode="tel" />
       <div class="error" id="contactError" style="display:none"></div>
     </div>
 
@@ -203,20 +189,24 @@
 /* ------------------- CONFIG ------------------- */
 const PHONE_NUMBER = "919113039893"; // target WhatsApp number (no +)
 const ITEMS = [
-  { id: 'dose1', name:'Classic Benne Dose', price: 85, cat:'classic', desc:'Buttery, served with chutney & sambar', img:'https://images.unsplash.com/photo-1604908177607-5a3e4d3b9f68?q=80&w=800&auto=format&fit=crop'},
-  { id: 'dose2', name:'Masala Benne Dose', price: 110, cat:'classic', desc:'Potato masala, lots of butter', img:'https://images.unsplash.com/photo-1604908563791-4b5bfa3d6b2d?q=80&w=800&auto=format&fit=crop'},
-  { id: 'dose3', name:'Cheese Benne Dose', price: 130, cat:'cheese', desc:'Melty cheese inside, extra benne', img:'https://images.unsplash.com/photo-1617196038926-d08c2e0f6cf4?q=80&w=800&auto=format&fit=crop'},
-  { id: 'dose4', name:'Paneer Benne Dose', price: 140, cat:'special', desc:'Spiced paneer filling', img:'https://images.unsplash.com/photo-1604908177191-85a37f05f6ae?q=80&w=800&auto=format&fit=crop'},
-  { id: 'dose5', name:'Onion-Chili Benne Dose', price: 100, cat:'spicy', desc:'Crispy edges with chilli-onion', img:'https://images.unsplash.com/photo-1608755674146-3f5b9ce7e4e3?q=80&w=800&auto=format&fit=crop'},
-  { id: 'dose6', name:'Egg Benne Dose', price: 125, cat:'special', desc:'Egg cooked inside, buttery finish', img:'https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=800&auto=format&fit=crop'},
-  { id: 'dose7', name:'Cheese-Chili Benne Dose', price: 150, cat:'cheese', desc:'Spicy + cheesy — crowd favourite', img:'https://images.unsplash.com/photo-1546069901-eacef0df6022?q=80&w=800&auto=format&fit=crop'},
-  { id: 'dose8', name:'Garlic Benne Dose', price: 115, cat:'special', desc:'A garlic punch with benne glaze', img:'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=800&auto=format&fit=crop'},
-  { id: 'dose9', name:'Mushroom Benne Dose', price: 160, cat:'special', desc:'Sautéed mushrooms, herby butter', img:'https://images.unsplash.com/photo-1523986371872-9d3ba2e2f642?q=80&w=800&auto=format&fit=crop'},
+  { id: 'item1', name:'Plate Idli 1', price: 25, cat:'classic', desc:'Soft steamed idlis with chutney', img:'https://images.unsplash.com/photo-1572449043413-0a6b17f756f2?q=80&w=800&auto=format&fit=crop'},
+  { id: 'item2', name:'Butter Dosa', price: 60, cat:'classic', desc:'Crispy dosa with a generous smear of butter', img:'https://images.unsplash.com/photo-1604908177607-5a3e4d3b9f68?q=80&w=800&auto=format&fit=crop'},
+  { id: 'item3', name:'Butter Khali Dosa', price: 60, cat:'classic', desc:'Thin khali dosa served with butter and chutney', img:'https://images.unsplash.com/photo-1604908563791-4b5bfa3d6b2d?q=80&w=800&auto=format&fit=crop'},
+  { id: 'item4', name:'Butter Set Dosa', price: 60, cat:'classic', desc:'Set of mini dosas with butter', img:'https://images.unsplash.com/photo-1617196038926-d08c2e0f6cf4?q=80&w=800&auto=format&fit=crop'},
+  { id: 'item5', name:'Butter Masala Dosa', price: 65, cat:'classic', desc:'Masala dosa with buttery finish', img:'https://images.unsplash.com/photo-1604908177191-85a37f05f6ae?q=80&w=800&auto=format&fit=crop'},
+  { id: 'item6', name:'Butter Special Khali', price: 65, cat:'special', desc:'Special khali dosa topped with butter', img:'https://images.unsplash.com/photo-1608755674146-3f5b9ce7e4e3?q=80&w=800&auto=format&fit=crop'},
+  { id: 'item7', name:'Butter Open Dosa', price: 70, cat:'special', desc:'Open-style dosa with butter spread', img:'https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=800&auto=format&fit=crop'},
+  { id: 'item8', name:'Ghee Masala Dosa', price: 70, cat:'special', desc:'Masala dosa finished with aromatic ghee', img:'https://images.unsplash.com/photo-1546069901-eacef0df6022?q=80&w=800&auto=format&fit=crop'},
+  { id: 'item9', name:'Butter Onion Dosa', price: 75, cat:'spicy', desc:'Dosa with butter and caramelized onion', img:'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=800&auto=format&fit=crop'},
+  { id: 'item10', name:'Palak Panner Masala', price: 75, cat:'special', desc:'Palak panner masala filling (greens + paneer style)', img:'https://images.unsplash.com/photo-1523986371872-9d3ba2e2f642?q=80&w=800&auto=format&fit=crop'},
+  { id: 'item11', name:'Tea', price: 15, cat:'classic', desc:'Hot, milky tea — perfect with dosa', img:'https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=800&auto=format&fit=crop'},
 ];
+
 /* ------------------- STATE ------------------- */
 let CART = {}; // id -> { item, qty }
 let activeCat = 'all';
 let flashEndsAt = Date.now() + (15 * 60 * 1000);
+let modalOpen = false;
 
 /* ------------------- HELPERS ------------------- */
 const currency = n => `₹${n.toFixed(0)}`;
@@ -279,6 +269,7 @@ function renderMenu(filterText=''){
 
 /* ------------------- CART OPS ------------------- */
 function onAdd(e){
+  if(isInputFocused() || modalOpen) return; // safety: ignore if typing or modal open
   const id = e.currentTarget.dataset.id;
   CART[id] = { item: ITEMS.find(x=>x.id===id), qty:1 };
   showToast('Added to cart');
@@ -286,6 +277,7 @@ function onAdd(e){
   updateCartBar();
 }
 function onIncrease(e){
+  if(isInputFocused() || modalOpen) return;
   const id = e.currentTarget.dataset.id;
   if(!CART[id]) CART[id] = { item: ITEMS.find(x=>x.id===id), qty:0 };
   CART[id].qty++;
@@ -293,6 +285,7 @@ function onIncrease(e){
   updateCartBar();
 }
 function onDecrease(e){
+  if(isInputFocused() || modalOpen) return;
   const id = e.currentTarget.dataset.id;
   if(!CART[id]) return;
   CART[id].qty--;
@@ -335,6 +328,7 @@ elAll('.chip').forEach(c=>{
     renderMenu(el('#search').value);
   });
 });
+
 el('#search').addEventListener('input', (ev)=> renderMenu(ev.target.value));
 
 /* ------------------- ORDER ID GENERATION ------------------- */
@@ -350,10 +344,7 @@ function nowTimestamp(){
   return `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}${pad(d.getMilliseconds(),3)}`;
 }
 function loadUsedIds(){
-  try{
-    const raw = localStorage.getItem('benne_order_ids');
-    return raw ? JSON.parse(raw) : [];
-  }catch(e){ return []; }
+  try{const raw = localStorage.getItem('benne_order_ids');return raw ? JSON.parse(raw) : [];}catch(e){ return []; }
 }
 function saveUsedId(id){
   const list = loadUsedIds();
@@ -366,14 +357,8 @@ function generateOrderId(){
   while(true){
     attempt++;
     const id = `BD-${nowTimestamp()}-${generateRandomLetters(4)}`;
-    if(!used.includes(id)){
-      saveUsedId(id);
-      return id;
-    }
-    if(attempt>8){
-      const stop = Date.now()+3;
-      while(Date.now()<stop){}
-    }
+    if(!used.includes(id)){ saveUsedId(id); return id; }
+    if(attempt>8){ const stop = Date.now()+3; while(Date.now()<stop){} }
   }
 }
 
@@ -394,12 +379,30 @@ pickupSelect.addEventListener('change', (e)=>{
   else pickupTimeInput.style.display = 'none';
 });
 
+// close modal when clicking backdrop but not when clicking modal content
+modal.addEventListener('click', (ev)=>{
+  if(ev.target === modal) closeConfirm();
+});
+
+function setModalState(open){
+  modalOpen = !!open;
+  modal.style.display = open ? 'flex' : 'none';
+  modal.setAttribute('aria-hidden', open ? 'false' : 'true');
+  // lock scroll
+  document.documentElement.style.overflow = open ? 'hidden' : '';
+  document.body.style.overflow = open ? 'hidden' : '';
+  // make background inert (prevent clicks and keyboard quick-add)
+  const main = el('#mainContent');
+  if(open) main.classList.add('bg-inert'); else main.classList.remove('bg-inert');
+  // also disable header/chips
+  elAll('header, .chip-row, .controls, .cart-bar').forEach(x=>{
+    if(open) x.classList.add('bg-inert'); else x.classList.remove('bg-inert');
+  });
+}
+
 function openConfirm(){
   const items = Object.values(CART);
-  if(items.length===0){
-    showToast('Cart is empty');
-    return;
-  }
+  if(items.length===0){ showToast('Cart is empty'); return; }
   // render summary
   orderSummary.innerHTML = '';
   let subtotal = 0;
@@ -415,23 +418,17 @@ function openConfirm(){
   totalRow.innerHTML = `<div style="font-weight:800">Total</div><div style="font-weight:900">${currency(subtotal)}</div>`;
   orderSummary.appendChild(totalRow);
 
-  // clear previous errors
+  // clear previous errors and always require fresh contact info
   contactError.style.display = 'none';
   contactError.textContent = '';
+  contactNameInput.value = '';
+  contactPhoneInput.value = '';
 
-  modal.style.display = 'flex';
-  modal.setAttribute('aria-hidden','false');
-
-  // try to prefill name/phone from localStorage (convenience)
-  const savedName = localStorage.getItem('benne_contact_name');
-  const savedPhone = localStorage.getItem('benne_contact_phone');
-  if(savedName) contactNameInput.value = savedName;
-  if(savedPhone) contactPhoneInput.value = savedPhone;
+  setModalState(true);
 }
 
 function closeConfirm(){
-  modal.style.display = 'none';
-  modal.setAttribute('aria-hidden','true');
+  setModalState(false);
 }
 
 /* validate phone: simple digits, length 6..15 */
@@ -461,7 +458,7 @@ el('#sendWhats').addEventListener('click', ()=>{
   }
   contactError.style.display = 'none';
 
-  // normalize phone for message (keep user-supplied; we don't change)
+  // normalize phone for message (keep user-supplied; we remove spaces only)
   const phoneDigits = phoneRaw.replace(/\s+/g, '');
 
   // Pickup time
@@ -473,9 +470,6 @@ el('#sendWhats').addEventListener('click', ()=>{
 
   // Generate order ID and store it
   const orderId = generateOrderId();
-
-  // Save contact for convenience next time
-  try{ localStorage.setItem('benne_contact_name', name); localStorage.setItem('benne_contact_phone', phoneDigits); }catch(e){}
 
   // Build WhatsApp message lines (no address, no notes; include contact fields)
   let lines = [];
@@ -535,9 +529,20 @@ if(saved){
 updateCartBar();
 renderMenu();
 
-/* ------------------- convenience: keyboard quick-add 1..9 ------------------- */
+/* ------------------- convenience: keyboard quick-add 1..9 (only when not focused on input and modal closed) ------------------- */
+function isInputFocused(){
+  const ae = document.activeElement;
+  if(!ae) return false;
+  const tag = ae.tagName.toLowerCase();
+  if(tag === 'input' || tag === 'textarea' || tag === 'select' || ae.isContentEditable) return true;
+  return false;
+}
+
 window.addEventListener('keydown', (e)=>{
+  if(modalOpen) return; // when modal open, ignore quick-add
+  if(isInputFocused()) return; // ignore when user typing (phone/name/search)
   const n = Number(e.key);
+  if(!Number.isInteger(n)) return;
   if(n >= 1 && n <= ITEMS.length){
     const it = ITEMS[n-1];
     CART[it.id] = CART[it.id] ? {...CART[it.id], qty: CART[it.id].qty + 1} : {item:it, qty:1};
@@ -549,4 +554,3 @@ window.addEventListener('keydown', (e)=>{
 </script>
 </body>
 </html>
-
